@@ -10,7 +10,7 @@ driver = core.firefox()
 def download(url, name):
     response = requests.get(url)
     pdf = response.content
-    cname = '/Users/ch.ke/Desktop/courses/taai2018/' + name + '.pdf'
+    cname = '/Users/ch.ke/GitHub/taaipdf/pdfs/' + name + '.pdf'
     with open(cname, 'wb') as f:
         f.write(pdf)
 

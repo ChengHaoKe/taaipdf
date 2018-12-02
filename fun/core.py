@@ -7,7 +7,7 @@ def firefox():
     firefox_driver = ep('~') + '/Users/ch.ke/GitHub/taaipdf/geckodriver'
 
     # create data download folder
-    pathlib.Path('/Users/ch.ke/Desktop/courses/taai2018').mkdir(parents=True, exist_ok=True)
+    pathlib.Path('/Users/ch.ke/GitHub/taaipdf/pdfs').mkdir(parents=True, exist_ok=True)
 
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.privatebrowsing.autostart", True)
@@ -15,7 +15,7 @@ def firefox():
     profile.set_preference("browser.download.manager.showWhenStarting", False)
     # download location
     profile.set_preference("browser.download.useDownloadDir", True)
-    profile.set_preference("browser.download.dir", '/Users/ch.ke/Desktop/courses/taai2018')
+    profile.set_preference("browser.download.dir", '/Users/ch.ke/GitHub/taaipdf/pdfs')
     ftypes = ("application/download,application/x-7z-compressed,text/html,text/plain,application/pdf,image/bmp,"
               "application/x-bzip,application/x-csh,text/x-c,text/css,text/csv,image/gif,video/h261,"
               "image/x-icon,text/x-java-source,java,application/javascript,application/json,"
