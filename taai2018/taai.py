@@ -2,17 +2,13 @@
 from fun import core
 import time
 from selenium.common.exceptions import StaleElementReferenceException, WebDriverException
-import requests
 
-driver = core.firefox()
+import pdfkit
+# needs system wide installation of:
+# brew install Caskroom/cask/wkhtmltopdf
 
 
-def download(url, name):
-    response = requests.get(url)
-    pdf = response.content
-    cname = '/Users/ch.ke/GitHub/taaipdf/pdfs/' + name + '.pdf'
-    with open(cname, 'wb') as f:
-        f.write(pdf)
+driver = core.firefox(dr='/GitHub/taaipdf/driver/geckodriver', fi='/GitHub/taaipdf/pdfs')
 
 
 def pdfc(d):
@@ -37,6 +33,15 @@ def pdfc(d):
             j += 1
             continue
 
+    # download webpage as pdf
+    try:
+        pdfkit.from_url('http://taai2018.asia.edu.tw/papers/?fbclid=IwAR2eNq-4CWfXD4Q_rF-SuSoXKNbeciCDFq3ZQNOFaS4NTkjYs'
+                        'BFxIAu5Z48#!/toc/0', '/Users/ch.ke/GitHub/taaipdf/pdfs/content.pdf')
+    except:
+        print('# Some errors found, rmb to check content.pdf!')
+        pass
+
+    # download each file
     page = []
     nopdf = []
     for i in range(0, len(pdf)):
@@ -79,9 +84,9 @@ def pdfc(d):
                     print('clicking:', i)
                     # last pdf has direct link
                     if int(i) == 89:
-                        download(url, str('375(' + pgn + ')'))
+                        core.dlreq(url, str('375(' + pgn + ')'))
                     else:
-                        download(durl, pgn)
+                        core.dlreq(durl, pgn)
                     d.close()
                 d.switch_to.window(parent)
                 break
