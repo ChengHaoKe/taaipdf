@@ -55,6 +55,7 @@ def firefox(dr, fi):
     profile.set_preference("pdfjs.disabled", "true")
     profile.update_preferences()
     driver = webdriver.Firefox(executable_path=firefox_driver, firefox_profile=profile)
-    driver.set_window_size(1390, 850)
+    # driver.set_window_size(1390, 850)
+    driver.maximize_window()
 
     return driver
